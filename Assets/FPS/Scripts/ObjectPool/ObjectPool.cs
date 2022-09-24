@@ -73,8 +73,9 @@ namespace Unity.FPS.ObjectPool
                 pooledTurretProjectileObjects.Add(turretTmp);
             }
         }
-        public GameObject GetPooledObject(WeaponType weaponType)
+        public GameObject GetPooledObject(int weaponTypeInt)
         {
+            WeaponType weaponType = (WeaponType) weaponTypeInt;
             switch (weaponType)
             {
                 case WeaponType.Blaster:

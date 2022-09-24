@@ -74,7 +74,7 @@ namespace Unity.FPS.Gameplay
 
             m_ProjectileBase.OnShoot += OnShoot;
 
-            Destroy(gameObject, MaxLifeTime);
+            //Destroy(gameObject, MaxLifeTime);
         }
 
         new void OnShoot()
@@ -195,6 +195,13 @@ namespace Unity.FPS.Gameplay
             }
 
             m_LastRootPosition = Root.position;
+
+            // Destroy After a While
+            MaxLifeTime -= Time.deltaTime;
+            if (MaxLifeTime < 0f)
+            {
+                gameObject.SetActive(false);
+            }
         }
 
         bool IsHitValid(RaycastHit hit)
@@ -257,7 +264,8 @@ namespace Unity.FPS.Gameplay
             }
 
             // Self Destruct
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+            gameObject.SetActive(false);
         }
 
         void OnDrawGizmosSelected()

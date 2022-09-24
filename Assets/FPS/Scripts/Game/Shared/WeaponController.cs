@@ -46,6 +46,8 @@ namespace Unity.FPS.Game
         [Tooltip("The image that will be displayed in the UI for this weapon")]
         public Sprite WeaponIcon;
 
+        public GameObject gameManager;
+
         [Tooltip("Default data for the crosshair")]
         public CrosshairData CrosshairDataDefault;
 
@@ -460,14 +462,15 @@ namespace Unity.FPS.Game
             {
                 Vector3 shotDirection = GetShotDirectionWithinSpread(WeaponMuzzle);
 
-                ProjectileBase newProjectile = ObjectPool.SharedInstance.GetPooledObject(WeaponType);
+                
+                GameObject newProjectile = ObjectPool.ObjectPool.SharedInstance.GetPooledObject((int) WeaponType);
                 if(newProjectile != null)
                 {
                     newProjectile.transform.position = WeaponMuzzle.position;
                     newProjectile.transform.rotation = Quaternion.LookRotation(shotDirection);
-                    newProjectile.gameObject.SetActive(true);
+                    newProjectile.SetActive(true);
                 }
-                newProjectile.Shoot(this);
+                newProjectile.GetComponent<ProjectileBase>().Shoot(this);
             }
 
             // muzzle flash
