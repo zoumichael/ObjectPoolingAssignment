@@ -1,8 +1,8 @@
 {
-    "name": "fps.Game",
+    "name": "fps.ObjectPool",
     "rootNamespace": "",
     "references": [
-        "GUID:1826c0224c0d048b88112c79bbb0cd85"
+        "GUID:9c5543eabb73a6249ac07b2c065ee8b4"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

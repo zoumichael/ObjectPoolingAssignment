@@ -12,6 +12,15 @@ namespace Unity.FPS.Game
         Charge,
     }
 
+    public enum WeaponType
+    {
+        Blaster,
+        Disk,
+        Hoverbot,
+        Shotgun,
+        Turret,
+    }
+
     [System.Serializable]
     public struct CrosshairData
     {
@@ -30,6 +39,9 @@ namespace Unity.FPS.Game
     {
         [Header("Information")] [Tooltip("The name that will be displayed in the UI for this weapon")]
         public string WeaponName;
+
+        [Tooltip("The specific weapon")]
+        public WeaponType WeaponType;
 
         [Tooltip("The image that will be displayed in the UI for this weapon")]
         public Sprite WeaponIcon;
@@ -447,8 +459,14 @@ namespace Unity.FPS.Game
             for (int i = 0; i < bulletsPerShotFinal; i++)
             {
                 Vector3 shotDirection = GetShotDirectionWithinSpread(WeaponMuzzle);
-                ProjectileBase newProjectile = Instantiate(ProjectilePrefab, WeaponMuzzle.position,
-                    Quaternion.LookRotation(shotDirection));
+
+                ProjectileBase newProjectile = ObjectPool.SharedInstance.GetPooledObject(WeaponType);
+                if(newProjectile != null)
+                {
+                    newProjectile.transform.position = WeaponMuzzle.position;
+                    newProjectile.transform.rotation = Quaternion.LookRotation(shotDirection);
+                    newProjectile.gameObject.SetActive(true);
+                }
                 newProjectile.Shoot(this);
             }
 
