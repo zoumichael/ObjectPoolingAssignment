@@ -60,6 +60,7 @@ namespace Unity.FPS.Gameplay
         Vector3 m_Velocity;
         bool m_HasTrajectoryOverride;
         float m_ShootTime;
+        float m_ShootCounter;
         Vector3 m_TrajectoryCorrectionVector;
         Vector3 m_ConsumedTrajectoryCorrectionVector;
         List<Collider> m_IgnoredColliders;
@@ -80,6 +81,7 @@ namespace Unity.FPS.Gameplay
         new void OnShoot()
         {
             m_ShootTime = Time.time;
+            m_ShootCounter = 0;
             m_LastRootPosition = Root.position;
             m_Velocity = transform.forward * Speed;
             m_IgnoredColliders = new List<Collider>();
@@ -197,8 +199,8 @@ namespace Unity.FPS.Gameplay
             m_LastRootPosition = Root.position;
 
             // Destroy After a While
-            MaxLifeTime -= Time.deltaTime;
-            if (MaxLifeTime < 0f)
+            m_ShootCounter += Time.deltaTime;
+            if (MaxLifeTime < m_ShootCounter)
             {
                 gameObject.SetActive(false);
             }

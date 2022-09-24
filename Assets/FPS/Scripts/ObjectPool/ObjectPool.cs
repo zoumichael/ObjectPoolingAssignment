@@ -84,6 +84,7 @@ namespace Unity.FPS.ObjectPool
                         {
                             if (!pooledBlasterProjectileObjects[i].activeInHierarchy)
                             {
+                                Debug.Log("Blaster " + i);
                                 return pooledBlasterProjectileObjects[i];
                             }
                         }
@@ -95,6 +96,7 @@ namespace Unity.FPS.ObjectPool
                         {
                             if (!pooledDiskProjectileObjects[i].activeInHierarchy)
                             {
+                                Debug.Log("Disk " + i);
                                 return pooledDiskProjectileObjects[i];
                             }
                         }
@@ -106,6 +108,7 @@ namespace Unity.FPS.ObjectPool
                         {
                             if (!pooledHoverbotProjectileObjects[i].activeInHierarchy)
                             {
+                                Debug.Log("Hoverbot " + i);
                                 return pooledHoverbotProjectileObjects[i];
                             }
                         }
@@ -117,6 +120,7 @@ namespace Unity.FPS.ObjectPool
                         {
                             if (!pooledShotgunProjectileObjects[i].activeInHierarchy)
                             {
+                                Debug.Log("Shotgun " + i);
                                 return pooledShotgunProjectileObjects[i];
                             }
                         }
@@ -128,6 +132,7 @@ namespace Unity.FPS.ObjectPool
                         {
                             if (!pooledTurretProjectileObjects[i].activeInHierarchy)
                             {
+                                Debug.Log("Turret " + i);
                                 return pooledTurretProjectileObjects[i];
                             }
                         }
